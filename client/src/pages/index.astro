@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/default.astro'
+import hero from '../assets/hero.jpg';
+import ShopItems from '../components/ShopItems.astro';
+export const prerender = true;
+---
+
+<Layout>
+	<section class="block hero">
+		<div class="cta">
+			<h1>Einzigartig und perfekt für Kinder</h1>
+			<p class="lede">
+				Entdecken Sie die Freude an bestickten Spielzeugen mit Häkeln.
+			</p>
+			<a href="/einkauf" class="big-link">Einkauf</a>
+		</div>
+		<img
+			src={hero}
+			alt="Foto eines handgefertigten, bestickten Spielzeugs mit Häkelarbeit."
+			class="hero-image"
+		/>
+	</section>
+	<section>
+		<div class="shop-items">
+			<ShopItems count={3} showCart="false">
+		</div>
+	</section>
+	<style>
+	.hero {
+			aspect-ratio: 2 / 3;
+			display: flex;
+			overflow: hidden;
+			padding: 8% 22%;
+			position: relative;
+		}
+		.hero :not(.hero-image) {
+			position: relative;
+			z-index: 5;
+		}
+		
+		.cta {
+			max-width: 400px;
+		}
+		.hero h1 {
+			font-size: clamp(1.75rem, 12vw, 3.5rem);
+			margin: 5rem 0 0;
+		}
+
+		.lede {
+			font-size: clamp(1rem, 7.75vw, 1.5rem);
+			line-height: 1.25;
+			margin: 0.5rem 0 0;
+		}
+		
+		.hero-image {
+			position: absolute;
+			inset: 0;
+			object-fit: cover;
+			object-position: 28% 0%;
+			height: 50%;
+			width: 100%;
+			z-index: 1;
+		}
+
+	</style>
+</Layout>
