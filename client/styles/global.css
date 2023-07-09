@@ -1,0 +1,28 @@
+@import url(https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@700&display=swap);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-crimson-100: hsl(348, 83%, 90%);
+  --color-crimson-200: hsl(348, 83%, 80%);
+  --color-crimson-600: hsl(348, 83%, 40%);
+  --color-crimson-700: hsl(348, 83%, 30%);
+  --color-crimson-800: hsl(348, 83%, 20%);
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Gill Sans', Roboto, Helvetica,
+    Arial, sans-serif, 'Apple Color Emoji', 'Gill Sans Emoji',
+    'Gill Sans Symbol';
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+body {
+  margin: 0;
+}

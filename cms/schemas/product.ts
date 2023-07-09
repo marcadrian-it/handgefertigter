@@ -1,4 +1,5 @@
 import {Rule} from '@sanity/types'
+
 export default {
   name: 'product',
   title: 'Product',
@@ -9,16 +10,6 @@ export default {
       title: 'Name',
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
-    },
-    {
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      hidden: true,
-      options: {
-        source: 'name',
-        maxLength: 27,
-      },
     },
     {
       name: 'price',

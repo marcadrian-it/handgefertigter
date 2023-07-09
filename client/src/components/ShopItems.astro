@@ -1,8 +1,47 @@
 ---
+import { groq } from "astro-sanity";
+const query = groq`*[_type == "product"]{
+  name,
+  price,
+  description,
+  _updatedAt,
+  "imageUrl": image.asset->url,
+  archived
+}`;
+
+const data = await sanityClient.fetch(query);
+if (!data) throw new Error("Failed to fetch data from Sanity");
 function formatCurrency(amount: number) {
 	return new Intl.NumberFormat('de-DE', {
 		currency: 'eur',
 		style: 'currency',
 	}).format(amount);
 }
+
+interface Product {
+  name: string;
+  price: number;
+  description: string;
+  imageUrl: string;
+  archived?: boolean;
+}
+
+
+interface ShopItemsProps {
+	count?: number;
+	showCart?: boolean;
+}
+const { count = 3, showCart = false } = Astro.props;
 ---
+<section>
+	<h2>Items</h2>
+		{data.slice(0, count).map((product:Product) => (
+			<div>
+				<img src={product.imageUrl} alt={product.name} />
+				<h2>{product.name}</h2>
+				<p>{product.description}</p>
+				<p>{formatCurrency(product.price)}</p>
+			</div>
+		))}
+	</ul>
+</section>

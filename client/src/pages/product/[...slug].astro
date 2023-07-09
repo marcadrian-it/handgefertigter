@@ -1,0 +1,20 @@
+<!-- ---
+import { getCollection }
+import Layout from '../../layouts/page.astro';
+
+export async function getStaticPaths() {
+	const shopProducts = await getCollection('product');
+
+	return shopProducts.map((product) => {
+		return {
+			params: { slug: product.slug },
+			props: { product },
+		};
+	});
+}
+
+const { product } = Astro.props;
+const { Content } = await product.render();
+
+export const prerender = true;
+--- -->
