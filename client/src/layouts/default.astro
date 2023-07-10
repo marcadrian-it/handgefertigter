@@ -15,6 +15,7 @@ const navItems = [
 	},
 ];
 import "../../styles/global.css";
+const pathname = new URL(Astro.request.url).pathname;
 ---
 
 <html lang="de">
@@ -25,28 +26,37 @@ import "../../styles/global.css";
 		<meta name="generator" content={Astro.generator} />
 		<title>Handgefertigter</title>
 	</head>
-	<body>
-		<header class="flex align-baseline bg-crimson-100 flex-row justify-between p-1">
+	<body class="flex flex-col min-h-screen">
+		<header class="flex align-baseline bg-crimson-100 flex-row justify-between p-5">
 
-			<a href="/" rel="home" class="font-ysabeau font-bold text-2xl">
+			<a href="/" rel="home" class="font-ysabeau font-bold text-4xl">
 				<span role="img" aria-label="garnrolle">🧵</span>
 				Handgefertigter
 			</a>
 
 
-			<nav class="flex gap-2 items-center pr-4">
-				{
-					navItems.map((item) => {
-						return <a href={item.path}>{item.label}</a>;
-					})
-				}
+			<nav class="flex gap-4 items-center pr-4 text-2xl font-extrabold">
+				{navItems.map((item) => {
+					return (
+					  <a
+						class={`hover:underline decoration-2 hover:scale-105 ${
+						item.path === pathname ? "scale-105 underline" : ""
+						}`}
+						href={item.path}
+					  >
+						{item.label}
+					  </a>
+					);
+				  })}
 			</nav>
 
 		</header>
+		<main>
 		<slot />
-		<footer>
+	</main>
+		<footer class="flex justify-center mt-auto p-6">
 			<p>
-				<a href="https://marcadrian.me" target="_blank">created by ©marcadrian</a>
+				<a class="text-sm hover:underline" href="https://marcadrian.me" target="_blank">created by marcadrian©2023</a>
 			</p>
 		</footer>
 	</body>

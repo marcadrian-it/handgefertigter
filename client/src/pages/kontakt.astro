@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/page.astro';
+const site = {
+    title: 'Kontakt',
+    description: 'Kontakt',
+    phone: '+48 123 456 789',
+    email: 'dufefe@email.com'
+}
+---
+
+<Layout>
+    <div class="flex flex-col justify-start p-5">
+        <h1 class="font-ysabeau text-4xl pl-5">Kontakt</h1>
+        <p>
+            <a href=`mailto:${site.email}`>
+                {site.email}
+            </a>
+
+            <br>
+
+            <a href=`tel:${site.phone}`>
+                {site.phone}
+            </a>
+
+            <br>
+
+            <a href="https://www.facebook.com/">
+                Facebook
+
+            </a>
+
+            <br>
+
+            <a href="https://www.instagram.com/">
+                Instagram
+
+            </a>
+
+            <br>
+        </p>
+      </div>
+</Layout>

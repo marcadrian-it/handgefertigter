@@ -1,47 +1,35 @@
 ---
+import { formatCurrency } from "../util/formatCurrency";
 import { groq } from "astro-sanity";
-const query = groq`*[_type == "product"]{
-  name,
-  price,
-  description,
-  _updatedAt,
-  "imageUrl": image.asset->url,
-  archived
+import { AddToCart } from "./AddToCart";
+const query = groq`*[_type == "product" && archived != true] | order(_updatedAt desc) {
+	_id,
+	name,
+	price,
+	description,
+  	_updatedAt,
+  	"imageUrl": image.asset->url,
 }`;
 
-const data = await sanityClient.fetch(query);
+
+
+const data: Product[] = await sanityClient.fetch(query);
 if (!data) throw new Error("Failed to fetch data from Sanity");
-function formatCurrency(amount: number) {
-	return new Intl.NumberFormat('de-DE', {
-		currency: 'eur',
-		style: 'currency',
-	}).format(amount);
-}
-
-interface Product {
-  name: string;
-  price: number;
-  description: string;
-  imageUrl: string;
-  archived?: boolean;
-}
-
 
 interface ShopItemsProps {
 	count?: number;
 	showCart?: boolean;
 }
-const { count = 3, showCart = false } = Astro.props;
+const { count = Infinity, showCart = true } : ShopItemsProps = Astro.props;
 ---
-<section>
-	<h2>Items</h2>
+<section class="flex flex-wrap gap-5 justify-center pt-4">
 		{data.slice(0, count).map((product:Product) => (
-			<div>
-				<img src={product.imageUrl} alt={product.name} />
-				<h2>{product.name}</h2>
-				<p>{product.description}</p>
-				<p>{formatCurrency(product.price)}</p>
+			<div class="w-[280px]">
+				<img class="w-[280px] h-[280px] border-2 border-crimson-100 rounded-md hover:scale-105 hover:cursor-pointer" src={product.imageUrl} alt={product.name} />
+				<h2 class="font-ysabeau text-center font-bold text-2xl pt-2">{product.name}</h2>
+				<p class="h-[150px]">{product.description}</p>
+				<p class="font-bold">{formatCurrency(product.price)}</p>
+				{showCart ? <AddToCart product={product} client:only="react" /> : null}
 			</div>
 		))}
-	</ul>
 </section>
