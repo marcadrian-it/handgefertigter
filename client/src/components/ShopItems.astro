@@ -4,6 +4,7 @@ import { groq } from "astro-sanity";
 import { AddToCart } from "./AddToCart";
 const query = groq`*[_type == "product" && archived != true] | order(_updatedAt desc) {
 	_id,
+	"slug": slug.current,
 	name,
 	price,
 	description,
@@ -25,8 +26,12 @@ const { count = Infinity, showCart = true } : ShopItemsProps = Astro.props;
 <section class="flex flex-wrap gap-5 justify-center pt-4">
 		{data.slice(0, count).map((product:Product) => (
 			<div class="w-[280px]">
-				<img class="w-[280px] h-[280px] border-2 border-crimson-100 rounded-md hover:scale-105 hover:cursor-pointer" src={product.imageUrl} alt={product.name} />
+				<a href={`/produkt/${product.slug}`}>
+					<div class="hover:scale-105 mb-2">
+				<img class="w-[280px] h-[280px] border-2 border-crimson-100 hover:border-crimson-600 rounded-md  drop-shadow-xl" src={product.imageUrl} alt={product.name} />
 				<h2 class="font-ysabeau text-center font-bold text-2xl pt-2">{product.name}</h2>
+				</div>
+			</a>
 				<p class="h-[150px]">{product.description}</p>
 				<p class="font-bold">{formatCurrency(product.price)}</p>
 				{showCart ? <AddToCart product={product} client:only="react" /> : null}

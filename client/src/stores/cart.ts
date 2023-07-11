@@ -1,6 +1,14 @@
-import { computed, map } from 'nanostores';
+import { computed } from 'nanostores';
+import { persistentMap } from '@nanostores/persistent';
 
-export const $cart = map<Record<string, CartProduct>>({});
+export const $cart = persistentMap<Record<string, CartProduct>>(
+  'cart:',
+  {},
+  {
+    encode: (value) => JSON.stringify(value),
+    decode: (value) => JSON.parse(value),
+  }
+);
 
 export function addProductToCart(product: Product) {
   const cartProduct = $cart.get()[product._id];

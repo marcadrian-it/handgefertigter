@@ -10,7 +10,7 @@ const EmptyState = () => {
           🧵
         </span>
       </p>
-      <p>Dein Warenkorb ist leer.</p>
+      <p>Ihr Warenkorb ist leer.</p>
     </>
   );
 };
@@ -22,7 +22,7 @@ export const Cart = () => {
 
   return (
     <div className="">
-      <h2>Dein Warenkorb</h2>
+      <h2>Ihr Warenkorb</h2>
       {Object.values($cart).length > 0 ? (
         <>
           <ul>
@@ -33,12 +33,21 @@ export const Cart = () => {
 
               return (
                 <li>
-                  <span>{entry.quantity}</span>
-                  <span>{entry.product.name}</span>
-                  <span>
-                    <button title="remove item">×</button>
+                  <span className="font-bold">{entry.quantity}x</span>
+                  <span className="ml-2 font-semibold">
+                    {entry.product.name}
                   </span>
-                  <span>{formatCurrency(entry.product.price)}</span>
+                  <span className="ml-2 font-bold">
+                    {formatCurrency(entry.product.price)}
+                  </span>
+                  <span className="ml-2 text-crimson-600 font-semibold">
+                    <button
+                      title="remove item"
+                      onClick={() => removeProductFromCart(entry.product)}
+                    >
+                      X
+                    </button>
+                  </span>
                 </li>
               );
             })}

@@ -1,5 +1,6 @@
 type Product = {
   _id: string;
+  slug: string;
   name: string;
   price: number;
   description: string;

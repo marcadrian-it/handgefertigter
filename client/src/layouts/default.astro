@@ -21,6 +21,7 @@ const pathname = new URL(Astro.request.url).pathname;
 <html lang="de">
 	<head>
 		<meta charset="utf-8" />
+		<meta name="description" content="Handgefertigte Produkte" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
@@ -29,13 +30,13 @@ const pathname = new URL(Astro.request.url).pathname;
 	<body class="flex flex-col min-h-screen">
 		<header class="flex align-baseline bg-crimson-100 flex-row justify-between p-5">
 
-			<a href="/" rel="home" class="font-ysabeau font-bold text-4xl">
+			<a href="/" rel="home" class="font-ysabeau font-bold text-4xl md:text-2xl xl:text-3xl">
 				<span role="img" aria-label="garnrolle">🧵</span>
 				Handgefertigter
 			</a>
 
 
-			<nav class="flex gap-4 items-center pr-4 text-2xl font-extrabold">
+			<nav class="flex gap-4 items-center pr-4 text-2xl md:text-xl font-extrabold sm:hidden md:pr-1">
 				{navItems.map((item) => {
 					return (
 					  <a

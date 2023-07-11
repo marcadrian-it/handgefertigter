@@ -1,20 +1,31 @@
-<!-- ---
-import { getCollection }
+---
+import { AddToCart } from '../../components/AddToCart';
+import { Cart } from '../../components/Cart';
 import Layout from '../../layouts/page.astro';
+import { formatCurrency } from '../../util/formatCurrency';
 
 export async function getStaticPaths() {
-	const shopProducts = await getCollection('product');
-
-	return shopProducts.map((product) => {
-		return {
-			params: { slug: product.slug },
-			props: { product },
-		};
-	});
+  const products = await sanityClient.fetch(`*[_type == "product" && archived != true && slug != null]{"slug": slug.current, name, description, price, "imageUrl": image.asset->url,}`);
+  return products.map((product: Product) => {
+    return {
+      params: { slug: product.slug },
+      props: { product },
+    };
+  });
 }
 
 const { product } = Astro.props;
-const { Content } = await product.render();
+const prerender = true;
+---
 
-export const prerender = true;
---- -->
+<Layout>
+  <div class="text-center flex flex-col justify-center items-center">
+  <h1 class="font-bold font-ysabeau text-5xl text-center">{product.name}</h1>
+  <p>{product.description}</p>
+  <p class="font-bold">{formatCurrency(product.price)}</p>
+  <img class="w-[400px]" src={product.imageUrl} alt={product.name} />
+  <AddToCart product={product} client:only="react" />
+  <p class="text-purple underline text-center p-2"><a href="/einkauf">Alle Häkelarbeiten kaufen hier</a></p>
+</div>
+<Cart client:only="react" />
+</Layout>
