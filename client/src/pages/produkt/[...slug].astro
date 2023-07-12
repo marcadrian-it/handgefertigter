@@ -19,13 +19,18 @@ const prerender = true;
 ---
 
 <Layout>
-  <div class="text-center flex flex-col justify-center items-center">
-  <h1 class="font-bold font-ysabeau text-5xl text-center">{product.name}</h1>
-  <p>{product.description}</p>
-  <p class="font-bold">{formatCurrency(product.price)}</p>
-  <img class="w-[400px]" src={product.imageUrl} alt={product.name} />
-  <AddToCart product={product} client:only="react" />
-  <p class="text-purple underline text-center p-2"><a href="/einkauf">Alle Häkelarbeiten kaufen hier</a></p>
-</div>
-<Cart client:only="react" />
+  <div class="flex flex-row md:flex-col">
+    <div class="flex-1 text-center flex flex-col justify-center items-center">
+      <h1 class="font-bold font-ysabeau text-5xl text-center">{product.name}</h1>
+      <p>{product.description}</p>
+      <p class="font-bold">{formatCurrency(product.price)}</p>
+      <img class="w-[400px] border-2 border-crimson-100 hover:border-crimson-600 rounded-md  drop-shadow-xl" src={product.imageUrl} alt={product.name} />
+      <AddToCart product={product} client:only="react" />
+      <p class="text-purple underline text-center p-2"><a href="/einkauf">Alle Häkelarbeiten kaufen hier</a></p>
+    </div>
+    <div class="w-[350px] my-0 mx-auto px-5 py-5">
+      <Cart client:only="react" />
+    </div>
+  </div>
 </Layout>
+

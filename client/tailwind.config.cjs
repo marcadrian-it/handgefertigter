@@ -36,6 +36,7 @@ module.exports = {
         lg: { max: '1024px' },
         xl: { max: '1311px' },
         '2xl': { max: '1536px' },
+        custom: { max: '964px' },
       },
     },
   },
