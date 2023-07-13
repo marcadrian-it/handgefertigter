@@ -5,7 +5,7 @@ import Layout from '../../layouts/page.astro';
 import { formatCurrency } from '../../util/formatCurrency';
 
 export async function getStaticPaths() {
-  const products = await sanityClient.fetch(`*[_type == "product" && archived != true && slug != null]{"slug": slug.current, name, description, price, "imageUrl": image.asset->url,}`);
+  const products = await sanityClient.fetch(`*[_type == "product" && archived != true && slug != null]{"slug": slug.current, _id, name, description, price, "imageUrl": image.asset->url,}`);
   return products.map((product: Product) => {
     return {
       params: { slug: product.slug },
@@ -21,7 +21,7 @@ const prerender = true;
 <Layout>
   <div class="flex flex-row md:flex-col">
     <div class="flex-1 text-center flex flex-col justify-center items-center">
-      <h1 class="font-bold font-ysabeau text-5xl text-center">{product.name}</h1>
+      <h1 class="font-bold font-ysabeau text-5xl text-center pt-5">{product.name}</h1>
       <p>{product.description}</p>
       <p class="font-bold">{formatCurrency(product.price)}</p>
       <img class="w-[400px] border-2 border-crimson-100 hover:border-crimson-600 rounded-md  drop-shadow-xl" src={product.imageUrl} alt={product.name} />

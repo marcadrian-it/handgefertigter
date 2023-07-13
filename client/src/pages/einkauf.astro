@@ -7,13 +7,13 @@ const prerender = true
 ---
 
 <Layout>
-    <div class="flex flex-col justify-start p-5">
+    <div class="flex flex-col justify-start">
   <h1 class="font-ysabeau text-4xl pl-5">Häkelarbeiten kaufen</h1>
-  <div class="flex flex-row custom:flex-col-reverse justify-center items-start">
+  <div class="flex flex-row custom:flex-col justify-center items-start">
     <div class="flex-1 text-center">
         <ShopItems/>
     </div>
-    <div class="my-0 mx-auto custom:pt-4">
+    <div class="my-0 mx-auto custom:pt-4 p-5">
         <Cart client:only="react"/>
     </div>
 </div>
