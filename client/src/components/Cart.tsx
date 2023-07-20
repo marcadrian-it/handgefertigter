@@ -1,6 +1,8 @@
 import { useStore } from '@nanostores/react';
 import { $cart as cart, removeProductFromCart, subtotal } from '../stores/cart';
 import { formatCurrency } from '../util/formatCurrency';
+import { createCheckout } from '../util/createCheckoutSession';
+import { loadStripe } from '@stripe/stripe-js';
 
 const EmptyState = () => {
   return (
@@ -68,7 +70,26 @@ export const Cart = () => {
                 <p className="text-black font-bold">
                   Gesamtsumme: {formatCurrency($subtotal + shippingCost)}
                 </p>
-                <button className="bg-crimson-800 text-white font-bold rounded-md px-4 py-2 mt-2 hover:bg-crimson-600  drop-shadow-xl">
+                <button
+                  className="bg-crimson-800 text-white font-bold rounded-md px-4 py-2 mt-2 hover:bg-crimson-600  drop-shadow-xl"
+                  onClick={async () => {
+                    // Call the createCheckout function
+                    const response = await createCheckout({
+                      cart: $cart,
+                      shippingCost,
+                    });
+                    console.log(response);
+
+                    const { id } = JSON.parse(response.body);
+                    console.log(id);
+                    const stripePromise = loadStripe(
+                      process.env.STRIPE_PUBLISHABLE_KEY as string
+                    );
+                    const stripe = await stripePromise;
+                    console.log(stripe);
+                    stripe?.redirectToCheckout({ sessionId: id });
+                  }}
+                >
                   Zur Kasse
                 </button>
               </div>
