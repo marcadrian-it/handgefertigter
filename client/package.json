@@ -10,12 +10,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^2.3.0",
+    "@astrojs/netlify": "^2.5.0",
     "@astrojs/react": "^2.2.1",
     "@astrojs/tailwind": "^4.0.0",
     "@nanostores/persistent": "^0.9.0",
     "@nanostores/react": "^0.7.1",
-    "astro": "^2.8.0",
+    "astro": "^2.8.5",
     "astro-sanity": "^1.1.7",
     "dotenv": "^16.3.1",
     "markdown-it": "^13.0.1",

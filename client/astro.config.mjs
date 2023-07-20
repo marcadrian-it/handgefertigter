@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import sanity from 'astro-sanity';
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
+import netlify from "@astrojs/netlify/functions";
 dotenv.config();
 
 
@@ -13,5 +14,7 @@ export default defineConfig({
     dataset: process.env.SANITY_STUDIO_DATASET,
     useCdn: true,
     apiVersion: '2023-07-09'
-  }), tailwind(), react()]
+  }), tailwind(), react()],
+  output: "server",
+  adapter: netlify()
 });
