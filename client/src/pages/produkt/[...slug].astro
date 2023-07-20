@@ -3,9 +3,13 @@ import { AddToCart } from '../../components/AddToCart';
 import { Cart } from '../../components/Cart';
 import Layout from '../../layouts/page.astro';
 import { formatCurrency } from '../../util/formatCurrency';
+import { groq } from 'astro-sanity';
+
 
 export async function getStaticPaths() {
-  const products = await sanityClient.fetch(`*[_type == "product" && archived != true && slug != null]{"slug": slug.current, _id, name, description, price, "imageUrl": image.asset->url,}`);
+  const query = groq`*[_type == "product" && archived != true && slug != null]{"slug": slug.current, _id, name, description, price, "imageUrl": image.asset->url,}`;
+  const products: Product[] = await sanityClient.fetch(query);
+  if (!products) throw new Error("Failed to fetch data from Sanity");
   return products.map((product: Product) => {
     return {
       params: { slug: product.slug },

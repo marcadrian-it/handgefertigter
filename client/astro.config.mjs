@@ -15,6 +15,6 @@ export default defineConfig({
     useCdn: true,
     apiVersion: '2023-07-09'
   }), tailwind(), react()],
-  output: "server",
+  output: "hybrid",
   adapter: netlify()
 });
