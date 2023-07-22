@@ -1,8 +1,20 @@
 import { useStore } from '@nanostores/react';
-import { $cart as cart, removeProductFromCart, subtotal } from '../stores/cart';
+import {
+  $cart as cart,
+  removeProductFromCart,
+  subtotal,
+  clearCart,
+} from '../stores/cart';
 import { formatCurrency } from '../util/formatCurrency';
-import { createCheckout } from '../util/createCheckoutSession';
 import { loadStripe } from '@stripe/stripe-js';
+
+const createCheckout = async (data: any) => {
+  const response = await fetch('/.netlify/functions/createCheckoutSession', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+  return await response.json();
+};
 
 const EmptyState = () => {
   return (
@@ -20,7 +32,7 @@ const EmptyState = () => {
 export const Cart = () => {
   const $subtotal = useStore(subtotal);
   const $cart = useStore(cart);
-  const shippingCost = 5;
+  const shippingCost = 5.5;
 
   return (
     <div className="rounded-xl px-4 py-4 drop-shadow-xl border-crimson-200 border-2 bg-white">
@@ -80,14 +92,15 @@ export const Cart = () => {
                     });
                     console.log(response);
 
-                    const { id } = JSON.parse(response.body);
+                    const id = response.id;
                     console.log(id);
                     const stripePromise = loadStripe(
-                      process.env.STRIPE_PUBLISHABLE_KEY as string
+                      'pk_test_51NTRaWDHxrj2HWGrQTV8SuI4SdAwmKyF9OLXXdpOwgZi9qgHp9xRxYSo9XnnXn6ghcYo2BIdXRs7a0vIfqncv050006Rp34e5M'
                     );
                     const stripe = await stripePromise;
                     console.log(stripe);
                     stripe?.redirectToCheckout({ sessionId: id });
+                    clearCart();
                   }}
                 >
                   Zur Kasse

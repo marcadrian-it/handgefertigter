@@ -2,6 +2,9 @@
 import { formatCurrency } from "../util/formatCurrency";
 import { groq } from "astro-sanity";
 import { AddToCart } from "./AddToCart";
+import {Image} from '@astrojs/image/components'
+import { client } from "../util/sanity";
+
 const query = groq`*[_type == "product" && archived != true] | order(_updatedAt desc) {
 	_id,
 	"slug": slug.current,
@@ -12,23 +15,27 @@ const query = groq`*[_type == "product" && archived != true] | order(_updatedAt 
   	"imageUrl": image.asset->url,
 }`;
 
+// @ts-ignore
 
 
-const data: Product[] = await sanityClient.fetch(query);
+
+const data: Product[] = await client.fetch(query);
 if (!data) throw new Error("Failed to fetch data from Sanity");
 
 interface ShopItemsProps {
 	count?: number;
 	showCart?: boolean;
 }
+
+
 const { count = Infinity, showCart = true } : ShopItemsProps = Astro.props;
 ---
 <section class="flex flex-wrap gap-5 justify-center pt-4">
 		{data.slice(0, count).map((product:Product) => (
-			<div class="w-[280px]">
+			<div class="w-[280px] pb-4">
 				<a href={`/produkt/${product.slug}`}>
 					<div class="hover:scale-105 mb-2">
-				<img class="w-[280px] h-[280px] border-2 border-crimson-100 hover:border-crimson-600 rounded-md  drop-shadow-xl" src={product.imageUrl} alt={product.name} />
+  <Image src={product.imageUrl} alt={product.name} width={280} height={280} class="w-[280px] h-[280px] border-2 border-crimson-100 hover:border-crimson-600 rounded-md drop-shadow-xl" format="webp" />
 				<h2 class="font-ysabeau text-center font-bold text-2xl pt-2">{product.name}</h2>
 				</div>
 			</a>

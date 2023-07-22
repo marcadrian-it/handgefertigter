@@ -1,6 +1,6 @@
 import Stripe from 'stripe';
 
-export async function createCheckout(event: any) {
+export async function handler(event: any, context: any) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
     apiVersion: '2022-11-15',
   });
@@ -14,35 +14,39 @@ export async function createCheckout(event: any) {
         currency: 'eur',
         product_data: {
           name: entry.product.name,
+          images: [entry.product.imageUrl],
         },
-        unit_amount: entry.product.price,
+        unit_amount: Math.round(entry.product.price * 100),
       },
       quantity: entry.quantity,
     })
   );
   console.log(lineItems);
 
-  // Add shipping cost as a separate line item
   if (shippingCost) {
     lineItems.push({
       price_data: {
-        currency: 'usd',
+        currency: 'eur',
         product_data: {
-          name: 'Shipping',
+          name: 'Versandkosten',
+          images: [],
         },
-        unit_amount: shippingCost,
+        unit_amount: shippingCost * 100,
       },
       quantity: 1,
     });
   }
 
-  // Create a new Stripe Checkout Session
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: lineItems,
     mode: 'payment',
-    success_url: '/einkauf',
-    cancel_url: '/einkauf',
+    success_url: 'http://localhost:8888/einkauf?success',
+    cancel_url: 'http://localhost:8888/einkauf',
+    locale: 'de',
+    shipping_address_collection: {
+      allowed_countries: ['AT'],
+    },
   });
 
   console.log(session);

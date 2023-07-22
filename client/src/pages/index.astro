@@ -1,7 +1,8 @@
 ---
 import Layout from '../layouts/default.astro'
-import hero from '../assets/hero.jpg';
+import hero from '../assets/hero.webp';
 import ShopItems from '../components/ShopItems.astro';
+import { Image } from '@astrojs/image/components';
 export const prerender = true;
 ---
 
@@ -14,10 +15,13 @@ export const prerender = true;
 			</p>
 			<a href="/einkauf" class="inline-block bg-crimson-800 text-lg text-white rounded-md px-4 py-1.5 hover:scale-105 hover:bg-crimson-700 font-bold  drop-shadow-xl sm:font-semibold sm:text-base">Häkelarbeiten kaufen</a>
 		</div>
-		<img
+		<Image
 		class="w-full h-full z-1 absolute inset-0 object-cover aspect-square"
 			src={hero}
 			alt="Foto eines handgefertigten, bestickten Spielzeugs mit Häkelarbeit."
+			loading="eager"
+			quality={50}
+			format="webp"
 		/>
 	</section>
 	<section class="block mt-12">
