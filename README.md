@@ -25,10 +25,11 @@ To visit the website, click on the logo.
 - [Netlify (serverless runtime)](https://www.netlify.com/)
 - [Tailwind](https://tailwindcss.com/)
 - [Stripe](https://stripe.com/)
+- [ESLint](https://eslint.org/)
 
-  
 ## Instructions
-``npm install`` - installs all the packages
+
+`npm install` - installs all the packages
 
 `npm run dev` - runs the webapp on localhost
 
