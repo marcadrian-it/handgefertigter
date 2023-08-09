@@ -37,7 +37,7 @@ To visit the website, click on the logo.
 
 `npm run build` - generates Prisma client and builds the Next.js application
 
-`npm run lint` - runs the next lint command
+`npm run lint` - will run ESLint with --fix to auto-fix issues.
 
 `npx prisma migrate reset` - drops, recreates the database, and reseeds it automatically (be careful)
 
