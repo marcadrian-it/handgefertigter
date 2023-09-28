@@ -41,7 +41,7 @@ export async function handler(event: any, context: any) {
     payment_method_types: ['card'],
     line_items: lineItems,
     mode: 'payment',
-    success_url: 'http://localhost:8888/einkauf?success',
+    success_url: 'http://localhost:8888/einkauf',
     cancel_url: 'http://localhost:8888/einkauf',
     locale: 'de',
     shipping_address_collection: {

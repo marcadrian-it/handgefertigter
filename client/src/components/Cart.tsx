@@ -34,8 +34,12 @@ export const Cart = () => {
   const $cart = useStore(cart);
   const shippingCost = 5.5;
 
+  const gradientStyle = {
+    background: `linear-gradient(75deg, var(--color-crimson-200), var(--color-crimson-600))`,
+  };
+
   return (
-    <div className="rounded-xl px-4 py-4 drop-shadow-xl border-crimson-200 border-2 bg-white">
+    <div className="rounded-xl px-4 py-4 shadow-xl border-crimson-200 border-2 bg-white">
       <div className="flex justify-end">
         <div className="text-sm mr-2 flex flex-col w-[300px]">
           <h2 className="font-semibold text-2xl">Ihr Warenkorb</h2>
@@ -83,9 +87,9 @@ export const Cart = () => {
                   Gesamtsumme: {formatCurrency($subtotal + shippingCost)}
                 </p>
                 <button
-                  className="bg-crimson-800 text-white font-bold rounded-md px-4 py-2 mt-2 hover:bg-crimson-600  drop-shadow-xl"
+                  style={gradientStyle}
+                  className="text-white font-bold rounded-md px-4 py-2 mt-2 shadow-lg focus:outline transition duration-300 hover:opacity-80 hover:bg-crimson-700 outline-black outline-offset-2"
                   onClick={async () => {
-                    // Call the createCheckout function
                     const response = await createCheckout({
                       cart: $cart,
                       shippingCost,

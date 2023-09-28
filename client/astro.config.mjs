@@ -4,7 +4,6 @@ import sanity from 'astro-sanity';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import netlify from '@astrojs/netlify/functions';
-import image from '@astrojs/image';
 
 dotenv.config();
 
@@ -19,9 +18,6 @@ export default defineConfig({
     }),
     tailwind(),
     react(),
-    image({
-      serviceEntryPoint: '@astrojs/image/sharp',
-    }),
   ],
   output: 'hybrid',
   adapter: netlify(),
