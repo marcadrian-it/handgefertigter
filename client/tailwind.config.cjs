@@ -9,6 +9,7 @@ module.exports = {
       backgroundColor: {
         'crimson-100': 'var(--color-crimson-100)',
         'crimson-200': 'var(--color-crimson-200)',
+        'crimson-300': 'var(--color-crimson-300)',
         'crimson-600': 'var(--color-crimson-600)',
         'crimson-700': 'var(--color-crimson-700)',
         'crimson-800': 'var(--color-crimson-800)',
@@ -16,6 +17,7 @@ module.exports = {
       borderColor: {
         'crimson-100': 'var(--color-crimson-100)',
         'crimson-200': 'var(--color-crimson-200)',
+        'crimson-300': 'var(--color-crimson-300)',
         'crimson-600': 'var(--color-crimson-600)',
         'crimson-700': 'var(--color-crimson-700)',
         'crimson-800': 'var(--color-crimson-800)',
@@ -23,6 +25,7 @@ module.exports = {
       textColor: {
         'crimson-100': 'var(--color-crimson-100)',
         'crimson-200': 'var(--color-crimson-200)',
+        'crimson-300': 'var(--color-crimson-300)',
         'crimson-600': 'var(--color-crimson-600)',
         'crimson-700': 'var(--color-crimson-700)',
         'crimson-800': 'var(--color-crimson-800)',

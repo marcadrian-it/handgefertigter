@@ -17,7 +17,6 @@ const navItems = [
 import "../../styles/global.css";
 const pathname = new URL(Astro.request.url).pathname;
 ---
-
 <html lang="de">
 	<head>
 		<meta charset="utf-8" />
@@ -25,24 +24,49 @@ const pathname = new URL(Astro.request.url).pathname;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+		
 		<title>Handgefertigter</title>
-	</head>
-	<body class="flex flex-col min-h-screen">
-		<header class="flex align-baseline bg-crimson-100 flex-row justify-between p-5">
 
-			<a href="/" rel="home" class="font-ysabeau font-bold text-4xl md:text-2xl xl:text-3xl">
+		<style>
+			.navbar {
+				background-image: linear-gradient(to right, var(--color-crimson-200), var(--color-crimson-100));
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+				z-index:100;
+			}
+
+			.footer {
+				background-image: linear-gradient(to right, var(--color-crimson-200), var(--color-crimson-100));
+				box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.3);
+			}
+
+			.nav-item {
+				transition: transform 0.3s ease-in-out;
+			}
+
+			.nav-item:hover {
+				transform: scale(1.05);
+			}
+
+			.footer a {
+				transition: color 0.3s ease-in-out;
+			}
+
+			.footer a:hover {
+				color: #2b2b2b;
+			}
+		</style>
+	</head>
+	<body class="flex flex-col min-h-screen bg-gradient-to-b from-red-300 to-blue-100">
+		<header class="flex align-baseline navbar flex-row justify-between p-5 ">
+			<a href="/" rel="home" class="font-ysabeau font-bold text-3xl md:text-xl xl:text-2xl ">
 				<span role="img" aria-label="garnrolle">🧵</span>
 				Handgefertigter
 			</a>
-
-
-			<nav class="flex gap-4 items-center pr-4 text-2xl md:text-xl font-extrabold sm:hidden md:pr-1">
+			<nav class="flex gap-4 items-center pr-4 text-2xl md:text-xl font-bold sm:hidden md:pr-1 pb-4">
 				{navItems.map((item) => {
 					return (
 					  <a
-						class={`hover:underline decoration-2 hover:scale-105 ${
-						item.path === pathname ? "scale-105 underline" : ""
-						}`}
+						class={`nav-item hover:underline decoration-2 ${item.path === pathname ? "underline" : ""}`}
 						href={item.path}
 					  >
 						{item.label}
@@ -50,12 +74,11 @@ const pathname = new URL(Astro.request.url).pathname;
 					);
 				  })}
 			</nav>
-
 		</header>
 		<main>
-		<slot />
-	</main>
-		<footer class="flex justify-center mt-auto p-6">
+			<slot />
+		</main>
+		<footer class="flex justify-center footer mt-auto p-6">
 			<p>
 				<a class="text-sm hover:underline" href="https://marcadrian.me" target="_blank">created by marcadrian©2023</a>
 			</p>

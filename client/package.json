@@ -10,31 +10,30 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/image": "^0.17.2",
-    "@astrojs/netlify": "^2.5.0",
-    "@astrojs/react": "^2.2.1",
-    "@astrojs/tailwind": "^4.0.0",
-    "@nanostores/persistent": "^0.9.0",
+    "@astrojs/netlify": "^3.0.2",
+    "@astrojs/react": "^3.0.2",
+    "@astrojs/tailwind": "^5.0.0",
+    "@nanostores/persistent": "^0.9.1",
     "@nanostores/react": "^0.7.1",
-    "@netlify/functions": "^1.6.0",
-    "@stripe/stripe-js": "^1.54.1",
-    "astro": "^2.8.5",
+    "@netlify/functions": "^2.1.0",
+    "@stripe/stripe-js": "^2.1.6",
+    "astro": "^3.0.2",
     "astro-sanity": "^1.1.7",
     "dotenv": "^16.3.1",
-    "markdown-it": "^13.0.1",
+    "markdown-it": "^13.0.2",
     "nanostores": "^0.9.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sanitize-html": "^2.11.0",
-    "sharp": "^0.32.4",
-    "stripe": "^12.13.0",
-    "tailwindcss": "^3.3.2"
+    "sharp": "^0.32.6",
+    "stripe": "^13.7.0",
+    "tailwindcss": "^3.3.3"
   },
   "devDependencies": {
-    "@types/markdown-it": "^12.2.3",
-    "@types/react": "^18.2.14",
-    "@types/react-dom": "^18.2.6",
-    "@types/sanitize-html": "^2.9.0",
-    "prettier": "3.0.0"
+    "@types/markdown-it": "^13.0.2",
+    "@types/react": "^18.2.23",
+    "@types/react-dom": "^18.2.8",
+    "@types/sanitize-html": "^2.9.1",
+    "prettier": "3.0.3"
   }
 }

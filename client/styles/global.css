@@ -10,6 +10,7 @@
 :root {
   --color-crimson-100: hsl(348, 83%, 90%);
   --color-crimson-200: hsl(348, 83%, 80%);
+  --color-crimson-300: hsl(348, 83%, 70%);
   --color-crimson-600: hsl(348, 83%, 40%);
   --color-crimson-700: hsl(348, 83%, 30%);
   --color-crimson-800: hsl(348, 83%, 20%);
