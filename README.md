@@ -42,4 +42,4 @@ To visit the website, click on the logo.
 
 ## Preview
 
-![Preview](https://raw.githubusercontent.com/marcadrian-it/progress-patron/main/client/public/handgefertigter-preview.jpg)
+![Preview](https://raw.githubusercontent.com/marcadrian-it/handgefertigter/main/client/public/handgefertigter-preview.jpg)
