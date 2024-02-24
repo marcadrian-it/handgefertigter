@@ -39,6 +39,8 @@ To visit the website, click on the logo.
 
 `npm run lint` - will run ESLint with --fix to auto-fix issues.
 
+`npm run lint:check` - will run ESLint without --fix to check for issues.
+
 `npx prisma migrate reset` - drops, recreates the database, and reseeds it automatically (be careful)
 
 ## Preview
