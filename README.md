@@ -43,6 +43,19 @@ To visit the website, click on the logo.
 
 `npx prisma migrate reset` - drops, recreates the database, and reseeds it automatically (be careful)
 
+## 🤝 Contributing
+
+### Clone the repo
+
+```bash
+git clone https://github.com/marcadrian-it/handgefertigter@latest
+cd handgefertigter
+```
+
+### Submit a pull request
+
+If you'd like to contribute, please fork the repository and open a pull request to the `main` branch.
+
 ## Preview
 
 ![Preview](https://raw.githubusercontent.com/marcadrian-it/handgefertigter/main/client/public/handgefertigter-preview.jpg)
